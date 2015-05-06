@@ -3,6 +3,7 @@
 	<name>CardsAgainstHumanity</name>
 	<comment></comment>
 	<projects>
+		<project>Gears-Engine</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -4,13 +4,24 @@ import gears.GBase;
 import gears.GSprite;
 import gears.GState;
 import gears.GUtils;
+
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.net.URL;
+
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
 import Cards.AssetManager;
 import Entities.IButtonCallback;
 import Entities.TextButton;
 
 
 public class MainMenu extends GState {
+	//TODO: Make input text areas, and JTextAreas integrated, so that I can get access to htmltext
 	private GSprite background;
+	private JTextField test;
+	private JTextPane test2;
 	@Override
 	public void create(){
 		super.create();
@@ -21,6 +32,25 @@ public class MainMenu extends GState {
 		background = new GSprite(0, 0, AssetManager.mainMenuBG);
 		add(background);
 		
+		/*
+		for(int i = 0; i < 5000; i++){
+			GSprite spr = new GSprite(Math.random() * GBase.gameWidth, Math.random() * GBase.gameHeight, null){
+				double totalElapsed = 0.0;
+				double movespeed = Math.random();
+				double spinspeed = Math.random();
+				@Override
+				public void update(){
+					super.update();
+					totalElapsed += GBase.elapsedSeconds * spinspeed;
+					x += Math.sin(totalElapsed) * movespeed;
+					y += Math.cos(totalElapsed) * movespeed;
+				}
+			};
+			spr.createImage(10, 10, new Color((int)(Math.random()*Integer.MAX_VALUE), false));
+			GBase.log((int)(Math.random()*Integer.MAX_VALUE));
+			add(spr);
+		}
+		*/
 		TextButton hostGame = new TextButton(450, 300, 100, 30, GUtils.RGBAf(45, 45, 45, 1), "Host Game", null);
 		hostGame.setCallback(new IButtonCallback() {
 			
@@ -44,13 +74,32 @@ public class MainMenu extends GState {
 			
 		});
 		add(joinGame);
-	}
-	
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		super.update();
-		GBase.log((long)1000/60);
+		
+		//Create a text field at a specified position.
+		test = new JTextField();
+		test.setBounds(new Rectangle(50, 400, 200, 20));
+		test.setBackground(new Color(0x0, false));
+		test.setForeground(new Color(0xFFFFFFFF, false));
+		GBase.gameInstance.add(test);
+		test.setVisible(true);
+		
+		//Create a text area at a specified position.
+		test2 = new JTextPane();
+		test2.setBounds(new Rectangle(500, 400, 200, 150));
+		test2.setBackground(new Color(0x0, false));
+		test2.setEditable(false);
+		test2.setContentType("text/html");
+		test2.setText("<html>"
+				+ "<h1><font color='white'>Text Area!</font></h1><br>"
+				+ "<img src=' " + getClass().getResource("/TitleCard.png") + "'/>");
 	}
 
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		GBase.gameInstance.remove(test);
+		test = null;
+		super.destroy();
+		
+	}
 }

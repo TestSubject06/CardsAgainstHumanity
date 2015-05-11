@@ -58,6 +58,7 @@ public class MainMenu extends GState {
 			public void callback() {
 				//Enter the host game state
 				GBase.log("Enter the Host Game state");
+				GBase.stateManager.addState(new HostGame());
 			}
 			
 		});
@@ -75,6 +76,7 @@ public class MainMenu extends GState {
 		});
 		add(joinGame);
 		
+		/*
 		//Create a text field at a specified position.
 		test = new JTextField();
 		test.setBounds(new Rectangle(50, 400, 200, 20));
@@ -89,16 +91,16 @@ public class MainMenu extends GState {
 		test2.setBackground(new Color(0x0, false));
 		test2.setEditable(false);
 		test2.setContentType("text/html");
-		test2.setText("<html>"
-				+ "<h1><font color='white'>Text Area!</font></h1><br>"
-				+ "<img src=' " + getClass().getResource("/TitleCard.png") + "'/>");
+		GBase.gameInstance.add(test2);
+		test2.setVisible(true);
+		*/
 	}
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		GBase.gameInstance.remove(test);
-		test = null;
+		//GBase.gameInstance.remove(test);
+		//test = null;
 		super.destroy();
 		
 	}

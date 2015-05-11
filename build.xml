@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project CardsAgainstHumanity with Jar-in-Jar Loader">
+<project default="create_run_jar" name="Create Runnable Jar for Project CardsAgainstHumanity">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="C:/Users/Zack/Desktop/Cards Against Humanity.jar">
+        <jar destfile="/home/zack/Desktop/CardsAgainstHumanity.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="Cards.CardsAgainstHumanity"/>
+                <attribute name="Main-Class" value="Cards.CardsAgainstHumanity"/>
                 <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./"/>
             </manifest>
-            <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="C:/Users/Zack/Documents/GitHub/CardsAgainstHumanity/bin"/>
-            <fileset dir="C:/Users/Zack/workspace/GearsEngine/bin"/>
+            <fileset dir="/home/zack/git/CardsAgainstHumanity/bin"/>
         </jar>
+    	<java jar="/home/zack/Desktop/CardsAgainstHumanity.jar" fork="true"/>
     </target>
 </project>
